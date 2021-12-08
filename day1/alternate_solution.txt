@@ -1,0 +1,14 @@
+#lang racket
+
+(define depths
+ (for/list ([line (file->lines "input.txt")])
+  (string->number line)))
+
+(define (count-increases data offset)
+  (for/sum ([x (in-list data)]
+            [y (in-list (drop data offset))]
+            #:when (< x y))
+     1))
+
+(count-increases depths 1)
+(count-increases depths 3)
